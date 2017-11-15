@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>yaoyao_06</title>
+    <style>
+    .bg{
+      width:1280px;
+      background-color:#fff;
+    }
+     #shadow{
+  position: fixed;
+  top:0;
+  left:0;
+  z-index: 0;/*小于0时不行*/
+  width: 100%;
+  background-color: #eeeeee;
+  opacity: .5;
+  filter: alpha(opacity = 20);
+}
+    input[type="submit"]{
+      width:100px;
+      height:45px;
+      margin: 200px 400px;
+      background-color: #6495ED;
+      border:none;
+      border-radius: 8px;
+      color:white;
+      font-size:18px;
+      outline: medium;
+    }
+    #popupwindoow{
+      width: 450px;
+      height: 250px;
+      z-index: 1;
+      position:absolute;
+      top:200px;
+      left: 300px;
+      border:1px solid #aaaaaa;
+      background-color:#fff;
+    }
+    p{
+      line-height: 250%;
+      margin: 0px;
+      border-bottom:1px solid #aaaaaa;
+      padding-left: 20px;
+    }
+    button{
+      width:80px;
+      height:40px;
+      background-color:#eeeeee;
+      border:1px solid #aaaaaa;
+      margin-top:110px;
+      margin-left:10px;
+      display: inline-block;
+      float: left;
+    }
+   
+    </style>
+  </head>
+<body>
+    <div class="bg" id="bg">
+      <input type="submit" id="popup" value="popup">
+      <div id="popupwindoow">
+        <p style="background-color: #eeeeee;">这是一个浮出层</p>
+        <p>这是一个浮出层</p>
+        <button id="confirm" style="margin-left:260px;">confirm</button>
+        <button id="cancel">concel</button>
+    </div>
+  </div>
+
+<script type="text/javascript">
+  var popup = document.getElementById("popup");
+  var bg = document.getElementById("bg");
+  var popupwindoow = document.getElementById("popupwindoow");
+  var confirm = document.getElementById("confirm");
+
+  function popUp(){
+    var shadow = document.createElement("div");
+    var height =  document.documentElement.scrollHeight;
+    shadow.id = "shadow";
+    shadow.style.height = height + "px";
+    bg.appendChild(shadow); 
+    }
+  popupwindoow.style.display="none";
+  popup.onclick = function(){
+    popUp();
+    popupwindoow.style.display="block";
+    shadow.onclick = function(){
+      bg.removeChild(shadow);
+      popupwindoow.style.display="none";
+    }
+    confirm.onclick = function(){
+      bg.removeChild(shadow);
+      popupwindoow.style.display="none";
+    }
+  }
+
+  
+</script>
+</body>
+</html>

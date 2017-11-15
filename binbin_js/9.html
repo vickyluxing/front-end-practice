@@ -1,0 +1,186 @@
+<!DOCTYPE>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>IFE JavaScript Task 09</title>
+      <style>    
+         .body{
+         display: flex;
+         text-align: center;
+         }
+         .root{
+         box-sizing:border-box;
+         padding: 20px;
+         width:auto;
+         height:auto;
+         border: 2px solid #3355d0;
+         background-color: #FFFFFF;
+         display: flex;
+         }
+         .box{
+         margin: 10px;
+         box-sizing:border-box;
+         padding: 10px;
+         width: auto;
+         height: auto;
+         border: 1px solid #3355d0;
+         background-color: #FFFFFF;
+         flex-flow: row;
+         justify-content: space-around;
+         }
+         .search{
+         width: 600px;
+         height: 20px;
+         margin: 30px auto;
+         overflow: auto;
+         }
+         .search[type="button"]{
+         width: 30%;
+         height: 100%;
+         background-color: #51A9FF;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="root" id="root">
+         HELLO WORLD!
+         <div class="box">
+            U.S.A
+            <div class="box">
+               CA
+               <div class="box">Los Angeles</div>
+               <div class="box">San Francisco</div>
+               <div class="box">San Jose</div>
+            </div>
+            <div class="box">
+               NY
+               <div class="box">New York</div>
+               <div class="box">Rochester</div>
+            </div>
+         </div>
+         <div class="box">
+            China
+            <div class="box">
+               Shandong
+               <div class="box">Jinan</div>
+               <div class="box">Dezhou</div>
+            </div>
+            <div class="box">Beijing</div>
+            <div class="box">Tianjin</div>
+         </div>
+         <div class="box">
+            France
+            <div class="box">Paris</div>
+            <div class="box">Lyon</div>
+         </div>
+      </div>
+      <div class="search">
+         <input type="button" value="DFSearch" id="dfs">
+         <input type="button" value="BFSearch" id="bfs">
+        <input type="text" id="searchVal">
+        <input type="button" value="search" id="search">
+      </div>
+      <div class="search">
+        <input type="button" value="delete" id="delete">
+        <input type="text" id="addVal">
+        <input type="button" value="add" id="add">
+      </div>
+      <script type="text/javascript">
+         var dfs = document.getElementById("dfs");
+         var bfs = document.getElementById("bfs");
+         var list =[];
+         var root = document.getElementById("root");
+         var timer=0;
+         var searchVal = document.getElementById("searchVal");
+         var search = document.getElementById("search");
+         var deleteN = document.getElementById("delete");
+         var addN = document.getElementById("add");
+         var flag = false;
+         var divs = document.getElementsByTagName("div");
+         var check;
+         
+         function DFS(root){
+           if (root){
+             showNode(root);
+             for (var i = 0; i < root.children.length; i++){
+              DFS(root.children[i]);
+            }
+           }
+         }
+         function BFS(root){
+           if (root){
+            list.push(root);
+            while (list.length != 0){
+              var node = list[0];       
+              showNode(node);
+              list.splice(0, 1); 
+              for (var i = 0; i < node.children.length; i++){
+                list.push(node.children[i]);
+              }
+            }
+          }
+         }
+         function showNode(node){
+           setTimeout(function () {
+               node.style.backgroundColor="#B9F068";
+           },timer+=500);
+           setTimeout(function () {
+               node.style.backgroundColor="#ffffff";
+           },timer+=500);
+         }
+
+         function searchResult(root){
+            searchNode(root);
+            setTimeout(function () {
+            if (!flag){
+              alert("no result")
+            }},timer+=500);
+            flag = false;
+            searchVal.value="";
+         }
+         function searchNode(node){
+            if (node){
+               showNode(node);
+               if (node.firstChild.nodeValue.replace(/(^\s*)|(\s*$)/g, "") == searchVal.value){
+                 setTimeout(function () {node.style.backgroundColor="red"; flag = true;},timer+=0);
+                 
+               }
+               for (var i = 0; i < node.children.length; i++){
+                searchNode(node.children[i]);
+              }
+            }
+         }
+         function add(){
+            var addVal = document.getElementById("addVal");
+            var newNode = document.createElement("div");
+            newNode.className = "box";
+            newNode.innerHTML = addVal.value;
+            check.appendChild(newNode);
+            addVal.value = '';
+         }
+          root.onclick = function(e){
+                check = e.target;
+                for(var i=0;i<divs.length;i++){
+                    divs[i].style.backgroundColor = "white";
+                }
+                check.style.backgroundColor = "#FFF068";
+            };
+         dfs.addEventListener("click",function () {
+           DFS(root);
+           timer=0;
+         },false);
+         bfs.addEventListener("click",function () {
+           BFS(root);
+           timer=0;
+         },false);
+         search.addEventListener("click",function () {
+           searchResult(root);
+           timer=0;
+         },false);
+         deleteN.addEventListener("click",function(){
+                check.parentElement.removeChild(check);
+            });
+         addN.addEventListener("click", add);
+      </script>
+   </body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>yaoyao_07</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        tr {
+            width: 300px;
+            height: 40px;
+            overflow: hidden;
+            padding-left: 20px;
+        }
+
+        th {
+            overflow: hidden;
+            color: #fff;
+            background-color: #333;
+            border: solid 1px #C5C9D4;
+            width: 110px;
+            height: 10px;
+            padding-left: 30px;
+        }
+
+        td {
+            border: solid 1px #C5C9D4;
+        }
+
+        .down {
+            width: 0;
+            height: 0;
+            border-width: 10px;
+            border-style: solid;
+            border-color: #fff #333 #333;
+            bottom: 3px;
+            position: relative;
+            left: 0px;
+            top: 18px;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .up {
+            width: 0;
+            height: 0;
+            border-width: 10px;
+            border-style: solid;
+            border-color: #333 #333 #fff;
+            position: relative;
+            left: 24px;
+            top: -10px;
+            display: inline-block;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <table class="grade">
+        <tr>
+            <th>
+                Name
+                <div class="up"></div>
+                <div class="down"></div>
+            </th>
+            <th>
+                Chinese
+                <div class="up"></div>
+                <div class="down"></div>
+            </th>
+            <th>
+                Math
+                <div class="up"></div>
+                <div class="down"></div>
+            </th>
+            <th>
+                English
+                <div class="up"></div>
+                <div class="down"></div>
+            </th>
+            <th>
+                Total
+                <div class="up"></div>
+                <div class="down"></div>
+            </th>
+        </tr>
+        <tr class="stu">
+            <td>小明</td>
+            <td>80</td>
+            <td>90</td>
+            <td>70</td>
+            <td>240</td>
+        </tr>
+        <tr class="stu">
+            <td>小红</td>
+            <td>90</td>
+            <td>60</td>
+            <td>90</td>
+            <td>240</td>
+        </tr>
+        <tr class="stu">
+            <td>小亮</td>
+            <td>60</td>
+            <td>100</td>
+            <td>70</td>
+            <td>230</td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+        var body = document.getElementsByTagName("body");
+        var table = document.querySelector(".grade");
+        var trObj = document.querySelectorAll(".stu");
+        var tr = Array.prototype.slice.call(trObj, 0);
+        var len = trObj.length;
+        var up = document.querySelectorAll(".up");
+        var down = document.querySelectorAll(".down");
+        var content = []
+        for (var i = 0; i < len; i++) {
+            content[i] = trObj[i].children;
+        }
+        for (let i = 0; i < 5; i++) {
+            up[i].onclick = function() {
+                sortListUp(i);
+            }
+            down[i].onclick = function() {
+                sortListDown(i);
+            }
+        }
+
+        function sortListUp(index) {
+            for (var j = 0; j < len - 1; j++) {
+                for (var k = j + 1; k < len; k++) {
+                    if (index == 0) {
+                        if (content[k][index].innerHTML < content[j][index].innerHTML) {
+                            var temp = trObj[k].innerHTML;
+                            trObj[k].innerHTML = trObj[j].innerHTML;
+                            trObj[j].innerHTML = temp;
+                        }
+                    } else {
+                        if (parseInt(content[k][index].innerHTML) < parseInt(content[j][index].innerHTML)) {
+                            var temp = trObj[k].innerHTML;
+                            trObj[k].innerHTML = trObj[j].innerHTML;
+                            trObj[j].innerHTML = temp;
+                        }
+                    }
+                }
+            }
+            for (let j = 0; j < len; j++) {
+              table.appendChild(trObj[j]);
+            }
+            body[0].appendChild(table);
+        }
+
+        function sortListDown(index) {
+            for (var j = 0; j < len - 1; j++) {
+                for (var k = j + 1; k < len; k++) {
+                    if (index == 0) {
+                        if (content[k][index].innerHTML > content[j][index].innerHTML) {
+                            var temp = trObj[k].innerHTML;
+                            trObj[k].innerHTML = trObj[j].innerHTML;
+                            trObj[j].innerHTML = temp;
+                        }
+                    } else {
+                        if (parseInt(content[k][index].innerHTML) > parseInt(content[j][index].innerHTML)) {
+                            var temp = trObj[k].innerHTML;
+                            trObj[k].innerHTML = trObj[j].innerHTML;
+                            trObj[j].innerHTML = temp;
+                        }
+                    }
+                }
+            }
+            for (let j = 0; j < len; j++) {
+                table.appendChild(trObj[j]);
+            }
+            body[0].appendChild(table);
+        }
+    </script>
+</body>
+
+</html>

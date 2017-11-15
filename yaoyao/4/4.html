@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>yaoyao_04</title>
+    <style>
+    body{
+      margin: 50px;
+    }
+    table{
+      border-collapse: collapse;
+      text-align:center;   
+    }
+    td{
+      box-sizing: border-box;
+      border: 1px solid #eee;
+      width: 50px;
+      height: 50px  
+    }
+    .box {
+      transition: all .8s;
+      height: 50px;
+      width: 50px;
+      position: absolute;
+      transform: rotate(0deg);
+      background: url(box.jpg) no-repeat 40% 40%;
+    }
+
+    select{
+      margin: 20px 10px 0px 50px;
+      width: 200px;
+      height: 28px;
+    }
+    button{
+      width: 50px;
+      height: 28px;
+      background-color: #7CB5FF;
+    }
+    p{
+      margin-left: 50px;
+      text-align: left;
+    }
+
+    
+    </style>
+  </head>
+<body>
+  <table id="table"></table>
+  <div class="box" id="box"></div>
+  <select id="action">
+    <option>GO</option>
+    <option>TUN LEF</option>
+    <option>TUN RIG</option>
+    <option>TUN BAC</option>
+  </select>
+  <button id="go">GO</button>
+  <p>
+  命令:</br>
+  GO：向蓝色边所面向的方向前进一格（一格等同于正方形的边长</br>
+  TUN LEF：向左转（逆时针旋转90度）</br>
+  TUN RIG：向右转（顺时针旋转90度）</br>
+  TUN BAC：向右转（旋转180度）
+  </p>
+
+        
+<script type="text/javascript">
+var table = document.getElementById("table");
+var box = document.getElementById("box");
+var xPosition = 350;
+var yPosition = 350;
+var deg = 0;
+var face = 0;
+var action = document.getElementById("action");
+var go = document.getElementById("go");
+
+window.onload=function(){
+  var tr = [];
+  for (var i = 0; i < 11; i++){
+    var td =[];
+    tr[i] = document.createElement("tr");
+    if (i == 0){
+      td[0] = document.createElement("td");
+      td[0].style.border = "none";
+      tr[i].appendChild(td[0]);
+      for (var j = 1; j < 11; j++){
+        td[j] = document.createElement("td");
+        td[j].innerHTML = j;
+        td[j].style.border = "none";
+        tr[i].appendChild(td[j]);
+      }
+    }
+    else{
+      td[0] = document.createElement("td");
+      td[0].innerHTML = i;
+      td[0].style.border = "none";
+      tr[i].appendChild(td[0]);
+      for (var j = 1; j < 11; j++){
+        td[j] = document.createElement("td");
+        tr[i].appendChild(td[j]);
+      }
+    }
+    table.appendChild(tr[i]);
+  }
+  box.style.left = xPosition + "px";
+  box.style.top = yPosition + "px";  
+}
+  go.onclick = function(){
+    if (action.value == "GO"){
+      switch(face){
+        case 0:
+        if (yPosition >= 150){
+          yPosition -= 50;
+          box.style.top = yPosition + "px"; 
+        } 
+        break;
+        case 1:
+        if (xPosition <= 500){
+          xPosition += 50;
+          box.style.left = xPosition + "px";
+        } 
+        break;
+        case 2:
+        if (yPosition <= 500){
+          yPosition += 50;
+          box.style.top = yPosition + "px"; 
+        } 
+        break;
+        case 3:
+        if (xPosition >= 150){
+          xPosition -= 50;
+          box.style.left = xPosition + "px"; 
+        } 
+        break;
+      }
+    } 
+    else { 
+      if (action.value == "TUN LEF"){
+        deg -= 90;
+        face += 3;
+      }
+      else if (action.value == "TUN RIG"){
+        deg += 90;
+        face += 1;
+      }
+      else if (action.value == "TUN BAC"){
+        deg += 180;
+        face += 2;
+      }
+      face %= 4;
+      box.style.transform = "rotate(" + deg + "deg)";      
+    }
+  }
+</script>
+</body>
+</html>

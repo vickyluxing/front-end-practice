@@ -1,0 +1,178 @@
+<!DOCTYPE>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>IFE JavaScript Task 07</title>
+      <style>    
+         .body{
+         display: flex;
+         text-align: center;
+         }
+         .root{
+         box-sizing:border-box;
+         padding: 20px;
+         width:auto;
+         height:auto;
+         border: 2px solid #3355d0;
+         background-color: #FFFFFF;
+         display: flex;
+         flex-direction: row;
+         justify-content: space-around;
+         }
+         .second{
+         margin: 20px;
+         box-sizing:border-box;
+         padding: 20px;
+         width: auto;
+         height: auto;
+         border: 1px solid #3355d0;
+         background-color: #FFFFFF;
+         display: flex;
+         flex-flow: row wrap;
+         justify-content: space-around;
+         }
+         .third{
+         margin: 20px;
+         box-sizing:border-box;
+         height: auto;
+         padding: 20px;
+         width: auto;
+         border: 1px solid #3355d0;
+         background-color: #FFFFFF;
+         display: flex;
+         flex-flow: row;
+         justify-content: space-around;
+         }
+         .forth{
+         margin: 20px;
+         box-sizing:border-box;
+         padding: 20px;
+         width: 99px;
+         height: 73px;
+         border: 1px solid #3355d0;
+         background-color: #FFFFFF;
+         flex-flow: row;
+         justify-content: space-around;
+         margin-top: 50px;
+         }
+         .search{
+         width: 400px;
+         height: 100px;
+         margin: 30px auto;
+         overflow: auto;
+         }
+         .search[type="button"]{
+         width: 30%;
+         height: 100%;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="root" id="root">
+         HELLO WORLD!
+         <div class="second">
+            U.S.A
+            <div class="third">
+               CA
+               <div class="forth">Los Angeles</div>
+               <div class="forth">San Francisco</div>
+               <div class="forth">San Jose</div>
+            </div>
+            <div class="third">
+               NY
+               <div class="forth">New York</div>
+               <div class="forth">Rochester</div>
+            </div>
+         </div>
+         <div class="second">
+            China
+            <div class="third">
+               Shandong
+               <div class="forth">Jinan</div>
+               <div class="forth">Dezhou</div>
+            </div>
+            <div class="third">Beijing</div>
+            <div class="forth">Tianjin</div>
+         </div>
+         <div class="second">
+            France
+            <div class="third">Paris</div>
+            <div class="third">Lyon</div>
+         </div>
+      </div>
+      <div class="search">
+         <input type="button" value="preOrder Search" id="preOrder">
+         <input type="button" value="postOrder Search" id="postOrder">
+        <input type="text" id="searchVal">
+        <input type="button" value="search" id="search">
+      </div>
+      <script type="text/javascript">
+         var perOrder = document.getElementById("preOrder");
+         var postOrder = document.getElementById("postOrder");
+         var root = document.getElementById("root");
+         var timer=0;
+         var searchVal = document.getElementById("searchVal");
+         var search = document.getElementById("search");
+         var flag = false;
+         
+         function preO(root){
+           if (root){
+             showNode(root);
+             for (var i = 0; i < root.children.length; i++){
+              preO(root.children[i]);
+            }
+           }
+         }
+         function postO(root){
+           if (root){
+             for (var i = root.children.length - 1; i >= 0; i--){
+              preO(root.children[i]);
+            }
+             showNode(root);
+           }
+         }
+         function showNode(node){
+           setTimeout(function () {
+               node.style.backgroundColor="blue";
+           },timer+=500);
+           setTimeout(function () {
+               node.style.backgroundColor="#ffffff";
+           },timer+=500);
+         }
+
+         function searchResult(root){
+            searchNode(root);
+            setTimeout(function () {
+            if (!flag){
+              alert("no result")
+            }},timer+=500);
+            flag = false;
+            searchVal.value="";
+         }
+         function searchNode(node){
+            if (node){
+               showNode(node);
+               if (node.firstChild.nodeValue.replace(/(^\s*)|(\s*$)/g, "") == searchVal.value){
+                 setTimeout(function () {node.style.backgroundColor="red"; flag = true;},timer+=0);
+                 
+               }
+               for (var i = 0; i < node.children.length; i++){
+                searchNode(node.children[i]);
+              }
+            }
+         }
+         preOrder.addEventListener("click",function () {
+           preO(root);
+           timer=0;
+         },false);
+         postOrder.addEventListener("click",function () {
+           postO(root);
+           timer=0;
+         },false);
+         search.addEventListener("click",function () {
+           searchResult(root);
+           timer=0;
+         },false);
+      </script>
+   </body>
+</html>

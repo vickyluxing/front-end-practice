@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>yaoyao_03</title>
+    <style>
+    form{
+        width: 600px;
+        height: auto;
+        margin: 100px auto;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .select{
+      margin: 20px 0px;
+    }
+    #studentSelection,#unstudentSelection{
+      display:none;
+    }
+    select{
+      margin-right: 20px;
+    }
+    input[type="text"]{
+        padding: 0 10px;
+        height:40px;
+        width: 200px;
+        font-size: 14px;
+        border: solid 1px #B5B5B5;
+        border-radius: 8px;
+      }
+    
+    </style>
+  </head>
+<body>
+  <form method = "post">
+    <div class ="select">
+      <input type="radio" name="student" id="student">
+      <label for="student">Current Student</label>
+      <input type="radio" name="student" id="unstudent">
+      <label for="unstudent">Graduate</label>
+    </div>
+    <div clsss="result">
+      <div id="studentSelection">
+        <lable for="city">City</lable>
+        <select id="city" name="groups">
+          <option>北京</option>
+          <option>上海</option>
+          <option>南京</option>
+          <option>杭州</option>
+        </select>
+        <lable for="school">School</lable>
+        <select id="school" name="groups">
+          <option>北京大学</option>
+          <option>清华大学</option>
+          <option>中国人民大学</option>
+          <option>北京师范大学</option>
+        </select>
+      </div>
+      <div id="unstudentSelection">
+        <label for="company">Company</label>
+        <input id="company" type="text">
+      </div>
+    </div>
+  </form>
+<script type="text/javascript">
+window.onload=function(){
+  var student = document.getElementById("student");
+  var unstudent = document.getElementById("unstudent");
+  var studentSelection = document.getElementById("studentSelection");
+  var unstudentSelection = document.getElementById("unstudentSelection");
+  var city = document.getElementById("city");
+  var school = document.getElementById("school");
+
+  student.onchange = function(){
+    studentSelection.style.display = "block";
+    unstudentSelection.style.display = "none";
+  }
+  unstudent.onchange = function(){
+    studentSelection.style.display = "none";
+    unstudentSelection.style.display = "block";
+  }
+  city.onchange = function(){
+    school.options.length = 0;
+    var s = city.value;
+    switch(s){
+      case "北京":
+        school.add(new Option("北京大学"));
+        school.add(new Option("清华大学"));
+        school.add(new Option("中国人民大学"));
+        school.add(new Option("北京师范大学"));
+        break;
+      case "上海":
+        school.add(new Option("复旦大学"));
+        school.add(new Option("上海交通大学"));
+        school.add(new Option("同济大学"));
+        school.add(new Option("华东师范大学"));
+        break;
+      case "南京":
+        school.add(new Option("南京大学"));
+        school.add(new Option("东南大学"));
+        school.add(new Option("中国药科大学"));
+        school.add(new Option("河海大学"));
+        break;
+      case "杭州":
+        school.add(new Option("浙江大学"));
+        school.add(new Option("浙江工业大学"));
+        school.add(new Option("杭州电子科技大学"));
+        school.add(new Option("浙江工商大学"));
+        break;
+    }
+  }
+}
+ 
+</script>
+</body>
+</html>

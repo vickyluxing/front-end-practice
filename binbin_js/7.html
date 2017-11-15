@@ -1,0 +1,139 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 07</title>
+    <style>    
+      .body{
+        display: flex;
+      }
+      .root{
+          width: 1200px;
+          height: 380px;
+          border: 2px solid #3355d0;
+          background-color: #FFFFFF;
+          display: flex;
+          justify-content: space-around;
+      }
+      .second{
+          width: 550px;
+          height: 280px;
+          border: 1px solid #3355d0;
+          background-color: #FFFFFF;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          margin-top: 50px;
+        }
+      .third{
+          width: 250px;
+          height: 180px;
+          border: 1px solid #3355d0;
+          background-color: #FFFFFF;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          margin-top: 50px;
+      }
+      .forth{
+          width: 99px;
+          height: 73px;
+          border: 1px solid #3355d0;
+          background-color: #FFFFFF;
+          flex-direction: row;
+          justify-content: space-around;
+          margin-top: 50px;
+        }
+      .search{
+          width: 400px;
+          height: 100px;
+          margin: 30px auto;
+          overflow: auto;
+      }
+      .search input{
+          width: 30%;
+          height: 100%;
+      }
+    </style>
+  </head>
+<body>
+  <div class="root" id="root">
+    <div class="second">
+      <div class="third">
+        <div class="forth"></div>
+        <div class="forth"></div>
+      </div>
+      <div class="third">
+        <div class="forth"></div>
+        <div class="forth"></div>
+      </div>
+    </div>
+    <div class="second">
+      <div class="third">
+        <div class="forth"></div>
+        <div class="forth"></div>
+      </div>
+      <div class="third">
+        <div class="forth"></div>
+        <div class="forth"></div>
+      </div>
+    </div>
+  </div>
+  <div class="search">
+    <input type="button" value="preOrder Search" id="preOrder">
+    <input type="button" value="inOrder Search" id="inOrder">
+    <input type="button" value="postOrder Search" id="postOrder">
+  </div>
+<script type="text/javascript">
+  var perOrder = document.getElementById("preOrder");
+  var inOrder = document.getElementById("inOrder");
+  var postOrder = document.getElementById("postOrder");
+  var root = document.getElementById("root");
+  var timer=0;
+
+  function preO(root){
+    if (root){
+      showNode(root);
+      preO(root.firstElementChild);
+      preO(root.lastElementChild);
+    }
+  }
+  function inO(root){
+    if (root){
+      inO(root.firstElementChild);
+      showNode(root);
+      inO(root.lastElementChild);
+    }
+  }
+  function postO(root){
+    if (root){
+      postO(root.firstElementChild);
+      postO(root.lastElementChild);
+      showNode(root);
+    }
+  }
+  function showNode(node){
+    // alert(node.tagName);
+    setTimeout(function () {
+        node.style.backgroundColor="#ff524a";
+    },timer+=500);
+    setTimeout(function () {
+        node.style.backgroundColor="#ffffff";
+    },timer+=500);
+  }
+
+  preOrder.addEventListener("click",function () {
+    preO(root);
+    timer=0;
+},false);
+  inOrder.addEventListener("click",function () {
+    inO(root);
+    timer=0;
+},false);
+  postOrder.addEventListener("click",function () {
+    postO(root);
+    timer=0;
+},false);
+</script>
+</body>
+</html>

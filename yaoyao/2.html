@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>yaoyao_01</title>
+      <style>
+         form{
+         width: 600px;
+         height: auto;
+         margin: 100px auto;
+         font-size: 16px;
+         font-weight: bold;
+         }
+         .item{
+         height:90px;
+         }
+         span{
+         width:100px;
+         margin-right: 10px;
+         text-align: right;
+         display: inline-block;
+         }
+         input[type="text"]{
+         margin: 0px 10px;
+         padding: 0 10px;
+         height:40px;
+         width: 400px;
+         font-size: 14px;
+         border: solid 1px #B5B5B5;
+         border-radius: 8px;
+         }
+         input[type="submit"]{
+         width:80px;
+         height:45px;
+         margin: 0px 150px;
+         background-color: #6495ED;
+         border:none;
+         border-radius: 8px;
+         color:white;
+         font-size:18px;
+         outline: medium;
+         }
+         .tip{
+         margin: 5px auto 5px 120px;
+         font-size: 14px;
+         color:#B5B5B5;
+         }
+      </style>
+   </head>
+   <body>
+      <form method = "post" onsubmit="return validate_form()">
+         <div class ="item">
+            <span>名称 </span><input class="text" id="name" type="text">
+            <div class="tip" id="nameTip"></div>
+         </div>
+         <div class ="item">
+            <span>密码 </span><input class="text" id="password" type="text">
+            <div class="tip" id="passwordTip"></div>
+         </div>
+         <div class ="item">
+            <span>密码确认 </span><input class="text" id="passwordCheck" type="text">
+            <div class="tip" id="passwordCheckTip"></div>
+         </div>
+         <div class ="item">
+            <span>邮箱 </span><input class="text" id="email" type="text">
+            <div class="tip" id="emailTip"></div>
+         </div>
+         <div class ="item">
+            <span>手机 </span><input class="text" id="phone" type="text">
+            <div class="tip" id="phoneTip"></div>
+         </div>
+         <input type="submit" id="button" value="check">
+      </form>
+      <script type="text/javascript">
+         var text = document.getElementsByClassName('text');
+         var tip = document.getElementsByClassName('tip');
+         var submit = document.getElementById('button');
+         
+         for (let i = 0; i < text.length; i++){     
+           text[i].onfocus = function(){
+             showTip(i);
+           };
+           text[i].onblur = function(){
+             if (text[i].value == null || text[i].value == ""){
+               showTipN(i);
+             }
+             else{
+               check(i, text[i].value);
+             }
+           };
+         }
+         
+         function showTip(i){
+           var tips = new Array("Required, 4~16 characters", "Required，please enter your password", "Required，please enter your password again", "Required, please enter your email","Required, please enter your phone number");
+           tip[i].innerHTML=tips[i];
+         }
+         function showTipN(i){
+           var tipsN = new Array("Name is required", "password is required", "password is required", "email is required","phone number is required");
+           tip[i].innerHTML=tipsN[i];
+           tip[i].style.color="red";
+           text[i].style.borderColor="red";
+         }
+         function check(i, value){
+           switch(i)
+           {
+             case 0:
+             nameCheck(value)
+             break;
+             case 1:
+             passwordCheck(value)
+             break;
+             case 2:
+             passwordCCheck(value)
+             break;
+             case 3:
+             mailCheck(value)
+             break;
+             case 4:
+             phoneCheck(value)
+             break;  
+           }
+         }
+         function nameCheck(value){
+           var length = 0;
+           for (var j = 0; j < value.length; j++){
+             var cur = value.charCodeAt(j);
+             if (cur>=0x00 && 0xFF>=cur){
+               length += 1;
+             }
+             else{
+               length += 2;
+             }
+           }
+           if (length == 0){
+               text[0].style.border="2px solid red";
+               tip[0].style.color="red";
+               tip[0].innerHTML="name can not be empty";
+           }else if (length > 3 && length < 17){
+               text[0].style.border="2px solid blue";
+               tip[0].style.color="blue";
+               tip[0].innerHTML="format correct";
+           }
+           else{
+               text[0].style.border="2px solid red";
+               tip[0].style.color="red";
+               tip[0].innerHTML="format wrong";
+           }
+         }
+         function passwordCheck(value){
+           var length = 0;
+           for (var j = 0; j < value.length; j++){
+             var cur = value.charCodeAt(j);
+             if (cur>=0x00 && 0xFF>=cur){
+               length += 1;
+             }
+             else{
+               length += 2;
+             }
+           }
+           if (length == 0){
+               text[1].style.border="2px solid red";
+               tip[1].style.color="red";
+               tip[1].innerHTML="password can not be empty";
+           }else if (length > 3 && length < 17){
+               text[1].style.border="2px solid blue";
+               tip[1].style.color="blue";
+               tip[1].innerHTML="format correct";
+           }
+           else{
+               text[1].style.border="2px solid red";
+               tip[1].style.color="red";
+               tip[1].innerHTML="format wrong";
+           }
+         }
+         function passwordCCheck(value){
+           if (value == text[1].value){
+               text[2].style.border="2px solid blue";
+               tip[2].style.color="blue";
+               tip[2].innerHTML="Password input is consistent";
+           }
+           else{
+              text[2].style.border="2px solid red";
+               tip[2].style.color="red";
+               tip[2].innerHTML="Password input is unconsistent";
+           }
+         }
+         function mailCheck(value){
+           var apos = value.indexOf("@");
+           var dotpos = value.lastIndexOf(".");
+           if (apos<1||dotpos-apos<2) {
+             text[3].style.border="2px solid red";
+             tip[3].style.color="red";
+             tip[3].innerHTML="email format wrong";
+           }
+           else {
+             text[3].style.border="2px solid blue";
+             tip[3].style.color="blue";
+             tip[3].innerHTML="email format correct";
+           }
+         }
+         function phoneCheck(value){
+           var reg = /^[0-9]{10}$/; 
+           var flag = reg.test(value); 
+           if (flag) {
+             text[4].style.border="2px solid blue";
+             tip[4].style.color="blue";
+             tip[4].innerHTML="phone format correct";
+           }
+           else {
+             text[4].style.border="2px solid red";
+             tip[4].style.color="red";
+             tip[4].innerHTML="phone format wrong";
+           }
+         }
+         submit.onclick = function(){
+            var c="blue";
+             var flag=(tip[0].style.color==c&&tip[1].style.color==c&&tip[2].style.color==c&&tip[3].style.color==c&&tip[4].style.color==c);
+             if(flag){
+               alert("输入正确");
+             }else{
+               alert("输入有误");
+             };
+         }
+      </script>
+   </body>
+</html>

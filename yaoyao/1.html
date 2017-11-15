@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>yaoyao_01</title>
+    <style>
+    form{
+        width: 600px;
+        height: auto;
+        margin: 100px auto;
+        font-size: 16px;
+        font-weight: bold;
+      }
+    input[type="text"]{
+        margin: 0px 10px;
+        padding: 0 10px;
+        height:40px;
+        width: 200px;
+        font-size: 14px;
+        border: solid 1px #B5B5B5;
+        border-radius: 8px;
+      }
+    input[type="submit"]{
+      width:70px;
+      height:45px;
+      background-color: #6495ED;
+      border:none;
+      border-radius: 8px;
+      color:white;
+      font-size:18px;
+      outline: medium;
+    }
+     .tip{
+        margin: 5px auto 5px 60px;
+        font-size: 14px;
+        color:#B5B5B5;
+      }
+    </style>
+  </head>
+<body>
+  <form method = "post" onsubmit="return validate_form()">
+    <label>名称：<input id="name" type="text"></label>
+    <input type="submit" id="button" value="check">
+    <br/>
+    <div class="tip" id="tip">Required, 4~16 characters</label>
+  </form>
+<script type="text/javascript">
+  // var submit = document.getElementById("button");
+
+	function validate_form(){
+    var name = document.getElementById("name");
+    var tip = document.getElementById("tip");
+    var length = 0;
+    for (var i = 0; i < name.value.length; i++){
+      var cur = name.value.charCodeAt(i);
+      if (cur>=0x00 && 0xFF>=cur){
+        length += 1;
+      }
+      else{
+        length += 2;
+      }
+    }
+    if (length == 0){
+        name.style.border="2px solid red";
+        tip.style.color="red";
+        tip.innerHTML="name can not be empty";
+        return false;
+    }else if (length > 3 && length < 17){
+        name.style.border="2px solid blue";
+        tip.style.color="blue";
+        tip.innerHTML="format correct";
+        return false;
+    }
+    else{
+        name.style.border="2px solid red";
+        tip.style.color="red";
+        tip.innerHTML="format wrong";
+        return false;
+    }
+  }
+  // submit.addEventListener('click',validate_form);
+</script>
+</body>
+</html>

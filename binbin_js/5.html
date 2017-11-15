@@ -1,0 +1,134 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 05</title>
+    <style>
+    body{
+      width: 400px;
+      height: 400px;
+      margin: 200px auto;
+    }
+      .button{
+        display: inline-block;
+        margin-left: 40px;
+      }
+      #result li{
+        display: inline-block;
+        width: 20px;
+        background-color: red;
+        text-align: center;
+        line-height: 200%;
+        color: white;
+        margin: 5px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+<body>
+  <input id= "num" type="text">
+  <div class="button">
+    <button id="leftin">左侧入</button>
+    <button id="rightin">右侧入</button>
+    <button id="leftout">左侧出</button>
+    <button id="rightout">右侧出</button> 
+    <br/>
+    <button id="sort">排序</button>
+  </div>
+  
+  <ul id="result">
+
+  </ul>
+  
+  
+
+<script type="text/javascript">
+var ul = document.getElementById("result");
+  function leftIn(){
+    var num = document.getElementById("num");
+    if (ul.childNodes.length <= 60){
+      if (num.value <= 100 && num.value >= 10){
+        // array.push(num.value);
+        var li = document.createElement("li");
+        li.style.height = num.value + "px";
+        ul.insertBefore(li, ul.firstChild);
+      }
+      else {
+        alert("please insert number between 10~100");
+      }
+    }
+    else{
+      alert("the count of number should less than 60");
+    }
+    num.value = '';
+    num.focus();
+  }
+  function rightIn(){
+    var num = document.getElementById("num");
+    if (ul.childNodes.length <= 60){
+      if (num.value <= 100 && num.value >= 10){
+        // array.push(num.value);
+        var li = document.createElement("li");
+        li.style.height = num.value + "px";
+        ul.appendChild(li);
+      }
+      else {
+        alert("please insert number between 10~100");
+      }
+    }
+    else{
+      alert("the count of number should less than 60");
+    }
+    num.value = '';
+    num.focus();
+  }
+  function rightOut(){
+    try{
+      ul.removeChild(ul.childNodes[ul.childNodes.length - 1]);
+      }
+    catch(err){
+      alert("no number");
+    }
+  }
+  function leftOut(){
+    try{
+      ul.removeChild(ul.childNodes[0]);
+    }
+    catch(err){
+      alert("no number");
+    }
+  }
+  function sortResult(){
+    // while (ul.firstChild) {
+    //   ul.removeChild(ul.firstChild);
+    // }
+    var li =  document.getElementsByTagName("li");
+    for (var i = 1; i < li.length; i++){   
+      for (var j = i - 1;j >= 0;j--){  
+        if (parseInt(li[j + 1].style.height) < parseInt(li[j].style.height)){
+          var tmp = li[j + 1].style.height;
+          li[j + 1].style.height = li[j].style.height;
+          li[j].style.height = tmp;
+        }
+      }
+    }
+    // for (var i = 0; i < array.length; i++){
+    //   var li = document.createElement("li");
+    //   li.style.height = array[i] + "px";
+    //   ul.appendChild(li);
+    // }
+  }
+  document.getElementById("num").focus();
+  var leftin = document.getElementById("leftin");
+  leftin.addEventListener('click', leftIn);
+  var rightin = document.getElementById("rightin");
+  rightin.addEventListener('click', rightIn);
+  var leftout = document.getElementById("leftout");
+  leftout.addEventListener('click', leftOut);
+  var rightout = document.getElementById("rightout");
+  rightout.addEventListener('click', rightOut);
+  var sort = document.getElementById("sort");
+  sort.addEventListener('click', sortResult);
+</script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 06</title>
+    <style>
+      body{
+        width: 400px;
+        height: 200px;
+        margin: 300px auto;
+      }
+      .button{
+        display: inline-block;
+        margin-left: 20px;
+      }
+      .search{
+        margin: 20px auto;
+      }
+      #result li{
+        display: inline-block;
+        /*width: 30px;
+        height: 30px;*/
+        background-color: red;
+        text-align: center;
+        line-height: 200%;
+        color: white;
+        margin-left: 10px;
+        padding: 10px;
+      }
+    </style>
+  </head>
+<body>
+  <textarea id= "text" type="text" rows="5" cols="20"></textarea>
+  <div class="button">
+    <button id="leftin">leftin</button>
+    <button id="rightin">rightin</button>
+    <button id="leftout">leftout</button>
+    <button id="rightout">rightout</button>
+  </div>
+  <div class="search">
+    <input id="searchText">
+    <button id="search">search</button>
+  </div>
+  <ul id="result">
+  </ul>
+
+  
+
+<script type="text/javascript">
+  function leftIn(){
+    var text = document.getElementById("text");
+    var arr = text.value.replace(/[^0-9a-zA-Z\u4e00-\u9fa5]+/g," ");
+    arr = arr.split(" ");
+    for (var i = arr.length - 1; i >= 0; i--){
+      var li = document.createElement("li");
+      li.innerHTML = arr[i];
+      var ul = document.getElementById("result");
+      ul.insertBefore(li, ul.firstChild);
+    }
+    text.value = '';
+    text.focus();
+  }
+  function rightIn(){
+    var text = document.getElementById("text");
+    var arr = text.value.replace(/[^0-9a-zA-Z\u4e00-\u9fa5]+/g," ");
+    arr = arr.split(" ");
+    for (var i = 0; i < arr.length; i++){
+      var li = document.createElement("li");
+      li.innerHTML = arr[i];
+      var ul = document.getElementById("result");
+      ul.appendChild(li);
+    }
+    text.value = '';
+    text.focus();
+  }
+  function rightOut(){
+    try{
+      var ul = document.getElementById("result");
+      ul.removeChild(ul.childNodes[ul.childNodes.length - 1]);
+      }
+    catch(err){
+      alert("no number");
+    }
+  }
+  function leftOut(){
+    try{
+      var ul = document.getElementById("result");
+      ul.removeChild(ul.childNodes[0]);
+    }
+    catch(err){
+      alert("no number");
+    }
+  }
+  function searchResult(){
+    var searchinput = document.getElementById("searchText").value;
+    var lis = document.getElementsByTagName("li");
+    for (var i = 0; i < lis.length; i++){
+      var str = lis[i].innerHTML;
+      if(str.indexOf(searchinput) != -1){
+        lis[i].style.backgroundColor = "blue";
+      }
+    }
+
+  }
+  document.getElementById("text").focus();
+  var leftin = document.getElementById("leftin");
+  leftin.addEventListener('click', leftIn);
+  var rightin = document.getElementById("rightin");
+  rightin.addEventListener('click', rightIn);
+  var leftout = document.getElementById("leftout");
+  leftout.addEventListener('click', leftOut);
+  var rightout = document.getElementById("rightout");
+  rightout.addEventListener('click', rightOut);
+  var search = document.getElementById("search");
+  search.addEventListener('click', searchResult);
+</script>
+</body>
+</html>

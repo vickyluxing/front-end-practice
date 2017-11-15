@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>yaoyao_05</title>
+    <style>
+    body{
+      margin: 50px;
+    }
+    table{
+      border-collapse: collapse;
+      text-align:center;   
+    }
+    td{
+      box-sizing: border-box;
+      border: 1px solid #eee;
+      width: 50px;
+      height: 50px  
+    }
+    .box {
+      transition: all .8s;
+      height: 50px;
+      width: 50px;
+      position: absolute;
+      transform: rotate(0deg);
+      background: url(box.jpg) no-repeat 40% 40%;
+    }
+
+    select{
+      margin: 20px 10px 0px 50px;
+      width: 200px;
+      height: 28px;
+    }
+    button{
+      width: 50px;
+      height: 28px;
+      background-color: #7CB5FF;
+    }
+    p{
+      margin-left: 50px;
+      text-align: left;
+    }
+
+    
+    </style>
+  </head>
+<body>
+  <table id="table"></table>
+  <div class="box" id="box"></div>
+  <select id="action">
+    <option>TRA LEF</option>
+    <option>TRA TOP</option>
+    <option>TRA RIG</option>
+    <option>TRA BOT</option>
+    <option>MOV LEF</option>
+    <option>MOV TOP</option>
+    <option>MOV RIG</option>
+    <option>MOV BOT</option>
+  </select>
+  <button id="go">GO</button>
+  <p>
+  命令:</br>
+  TRA LEF：向屏幕的左侧移动一格，方向不变</br>
+  TRA TOP：向屏幕的上面移动一格，方向不变</br>
+  TRA RIG：向屏幕的右侧移动一格，方向不变</br>
+  TRA BOT：向屏幕的下面移动一格，方向不变</br>
+  MOV LEF：方向转向屏幕左侧，并向屏幕的左侧移动一格</br>
+  MOV TOP：方向转向屏幕上面，向屏幕的上面移动一格</br>
+  MOV RIG：方向转向屏幕右侧，向屏幕的右侧移动一格</br>
+  MOV BOT：方向转向屏幕下面，向屏幕的下面移动一格</br>
+  </p>
+
+        
+<script type="text/javascript">
+var table = document.getElementById("table");
+var box = document.getElementById("box");
+var xPosition = 350;
+var yPosition = 350;
+var deg = 0;
+var face = 0;
+var action = document.getElementById("action");
+var move = document.getElementById("go");
+
+window.onload=function(){
+  var tr = [];
+  for (var i = 0; i < 11; i++){
+    var td =[];
+    tr[i] = document.createElement("tr");
+    if (i == 0){
+      td[0] = document.createElement("td");
+      td[0].style.border = "none";
+      tr[i].appendChild(td[0]);
+      for (var j = 1; j < 11; j++){
+        td[j] = document.createElement("td");
+        td[j].innerHTML = j;
+        td[j].style.border = "none";
+        tr[i].appendChild(td[j]);
+      }
+    }
+    else{
+      td[0] = document.createElement("td");
+      td[0].innerHTML = i;
+      td[0].style.border = "none";
+      tr[i].appendChild(td[0]);
+      for (var j = 1; j < 11; j++){
+        td[j] = document.createElement("td");
+        tr[i].appendChild(td[j]);
+      }
+    }
+    table.appendChild(tr[i]);
+  }
+  box.style.left = xPosition + "px";
+  box.style.top = yPosition + "px";  
+}
+  move.onclick = function(){
+    switch(action.value){
+      case "TRA LEF":
+          toLeft();
+          break;
+      case "TRA TOP":
+          toTop();
+          break;
+      case "TRA RIG":
+          toRight();
+          break;
+      case "TRA BOT":
+          toBottom();
+          break;
+      case "MOV LEF":
+          moveLeft();
+          break;
+      case "MOV TOP":
+          moveTop();
+          break;
+      case "MOV RIG":
+          moveRight();
+          break;
+      case "MOV BOT":
+          moveBottom();
+          break;
+    }
+  }
+    function Go(){
+      switch(face){
+        case 0:
+        if (yPosition >= 150){
+          yPosition -= 50;
+          box.style.top = yPosition + "px"; 
+        } 
+        break;
+        case 1:
+        if (xPosition <= 500){
+          xPosition += 50;
+          box.style.left = xPosition + "px";
+        } 
+        break;
+        case 2:
+        if (yPosition <= 500){
+          yPosition += 50;
+          box.style.top = yPosition + "px"; 
+        } 
+        break;
+        case 3:
+        if (xPosition >= 150){
+          xPosition -= 50;
+          box.style.left = xPosition + "px"; 
+        } 
+        break;
+      }
+    }
+    function turnLeft(){
+      deg -= 90;
+      face += 3;
+      face %= 4;
+      box.style.transform = "rotate(" + deg + "deg)";    
+    }
+     function turnRight(){
+      deg += 90;
+      face += 1;
+      face %= 4;
+      box.style.transform = "rotate(" + deg + "deg)";
+    }
+     function turnBack(){
+      deg += 180;
+      face += 2;
+      face %= 4;
+      box.style.transform = "rotate(" + deg + "deg)";
+    }
+    function toLeft(){
+      if (xPosition >= 150){
+          xPosition -= 50;
+          box.style.left = xPosition + "px"; 
+        } 
+    }
+    function toTop(){
+      if (yPosition >= 150){
+          yPosition -= 50;
+          box.style.top = yPosition + "px"; 
+        } 
+    }
+    function toRight(){
+      if (xPosition <= 500){
+          xPosition += 50;
+          box.style.left = xPosition + "px";
+        }  
+    }
+    function toBottom(){
+      if (yPosition <= 500){
+          yPosition += 50;
+          box.style.top = yPosition + "px"; 
+        } 
+    }
+    function moveLeft(){
+      if (face == 0){
+        turnLeft();
+      }
+      else if (face == 1){
+        turnBack();
+      }
+      else if (face == 2){
+        turnRight();
+      }
+      setTimeout("toLeft()",500);
+    }
+    function moveTop(){
+      if (face == 1){
+        turnLeft();
+      }
+      else if (face == 2){
+        turnBack();
+      }
+      else if (face == 3){
+        turnRight();
+      }
+      setTimeout("toTop()",500);
+    }
+    function moveRight(){
+       if (face == 2){
+        turnLeft();
+      }
+      else if (face == 3){
+        turnBack();
+      }
+      else if (face == 0){
+        turnRight();
+      }
+      setTimeout("toRight()",500); 
+    }
+    function moveBottom(){
+      if (face == 3){
+        turnLeft();
+      }
+      else if (face == 0){
+        turnBack();
+      }
+      else if (face == 1){
+        turnRight();
+      }
+      setTimeout("toBottom()",500);
+    }    
+    // if (action.value == "GO"){
+    //   switch(face){
+    //     case 0:
+    //     if (yPosition >= 150){
+    //       yPosition -= 50;
+    //       box.style.top = yPosition + "px"; 
+    //     } 
+    //     break;
+    //     case 1:
+    //     if (xPosition <= 500){
+    //       xPosition += 50;
+    //       box.style.left = xPosition + "px";
+    //     } 
+    //     break;
+    //     case 2:
+    //     if (yPosition <= 500){
+    //       yPosition += 50;
+    //       box.style.top = yPosition + "px"; 
+    //     } 
+    //     break;
+    //     case 3:
+    //     if (xPosition >= 150){
+    //       xPosition -= 50;
+    //       box.style.left = xPosition + "px"; 
+    //     } 
+    //     break;
+    //   }
+    // } 
+    // else { 
+    //   if (action.value == "TUN LEF"){
+    //     deg -= 90;
+    //     face += 3;
+    //   }
+    //   else if (action.value == "TUN RIG"){
+    //     deg += 90;
+    //     face += 1;
+    //   }
+    //   else if (action.value == "TUN BAC"){
+    //     deg += 180;
+    //     face += 2;
+    //   }
+    //   face %= 4;
+    //   box.style.transform = "rotate(" + deg + "deg)";      
+    // }
+</script>
+</body>
+</html>
