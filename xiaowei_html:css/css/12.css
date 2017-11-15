@@ -1,0 +1,133 @@
+*{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+h1{
+    font-size: 20px;
+    line-height: 200%;
+}
+h4{
+    font-size: 14px;
+    line-height: 200%;
+    color: #6c6c6c;
+}
+.task{
+    width:300px;
+    margin:20px auto;   
+}
+table{
+    margin: 20px auto;
+}
+table th{
+    background-color: #000;
+    color:#fff;
+    text-align: left;
+}
+table tr:nth-child(2), table tr:nth-child(3), table tr:nth-child(4){
+    color: red;
+}
+table tr:nth-child(2n+1){
+     background-color: #cccccc;
+}
+form{
+    margin: 20px auto;
+}
+form input{
+    width: 125px;
+    height:25px;   
+}
+form input:hover{
+    width:250px;
+    height:25px;
+    border-radius:3px;
+    border:2px solid #00b3ee;  
+    box-shadow:  0 0 4px #4FC2FF;
+}
+.banner{
+    width: 300px;
+    height:150px;
+    overflow: hidden;
+}
+#bt-control1,#bt-control2,#bt-control3,
+#control1,#control2,#control3{
+    display:inline-block;
+    width:40px;
+    height:40px;
+    line-height: 20px;
+    text-align: center;
+    bottom:5px;
+    background-color: rgba(255,255,255,.3);
+    cursor:pointer;
+    position: relative;
+    
+}
+#bt-control1,#bt-control2,#bt-control3{
+    top:110px;
+    border: none;
+    z-index:2;
+    opacity: 0;
+}
+#control1,#control2,#control3{
+    top:85px;
+    z-index:1;
+}
+#bt-control1{left:180px;}
+#bt-control2{left:135px;}
+#bt-control3{left:90px;}
+#control1{left:130px;}
+#control2{left:85px;}
+#control3{left:40px;}
+.banner p{
+    font-size:20px;
+    position: relative;
+    top:10px;
+    color: #fff;
+}
+.box-group
+{
+    width: 300%;
+    height: 100%;
+    position: relative;
+    font-size: 0;
+    top:-50px;
+}
+.banner #bt-control1:checked ~ #banner .box-group{
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    -o-transform: translateX(0%);
+    transform: translateX(0%);
+}
+.banner #bt-control2:checked ~ .box-group{
+   -webkit-transform: translateX(-33.3%);
+   transform: translateX(-33.3%);
+}
+.banner #bt-control3:checked  ~ .box-group{
+    -webkit-transform: translateX(-66.6%);
+    transform: translateX(-66.6%);
+}
+.box
+{
+    width: 300px;
+    height: 150px;
+    float: left;
+}
+
+.box1
+{
+    background-color: green;
+}
+
+.box2
+{
+    background-color: #eb9316;
+}
+
+.box3
+{
+    background-color: blue;
+}
+

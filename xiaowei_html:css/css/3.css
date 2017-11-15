@@ -1,0 +1,114 @@
+.container{
+	background-color: #eee;
+	width:auto;
+	height:auto;
+	padding:20px;
+	margin-bottom: 20px;
+	border: 2px solid #999;
+	overflow:hidden;
+}
+.team{
+	background-color: white;
+	width: 200px;
+	padding:20px;
+	border: 2px solid #999;
+	float:left;
+}
+.team img{
+	width: 80px;
+	height: 80px;
+	border: 2px solid #999;
+	float:left;
+}
+.team p{
+	width: 80px;
+	margin: 0px;
+	float:right;
+}
+.teamMember{
+	background-color: white;
+	width: 80px;
+	padding: 20px;
+	border: 2px solid #999;
+	float:right;
+}
+.teamMember img{
+	width: 80px;
+	height: 80px;
+	margin-bottom: 20px;
+	border: 2px solid #999;
+	float:left;
+}
+.teamIntro{
+	background-color: white;
+	width: auto;
+	margin-left: 280px;
+   	margin-right: 160px;
+	border: 2px solid #999;
+	padding:20px;
+}
+.teamIntro p{
+	margin: 0px;
+	font-size: 14px;
+	color: black;
+}
+.clear{
+	clear:both;
+}
+
+.containerP{
+	background-color: #eee;
+	width:auto;
+	height:auto;
+	padding:20px;
+	margin-bottom: 20px;
+	border: 2px solid #999;
+	/*overflow:auto;*/
+}
+.teamP{
+	background-color: white;
+	position: absolute;
+	margin-left: 0px;
+	width: 200px;
+	padding:20px;
+	border: 2px solid #999;
+}
+.teamP img{
+	/*position:absolute;*/
+	width: 80px;
+	height: 80px;
+	border: 2px solid #999;
+}
+.teamP p{
+	float: right;
+	width: 80px;
+	margin: 0px;
+}
+.teamIntroP{
+	background-color: white;
+	width: auto;
+	margin-left: 280px;
+   	margin-right: 180px;
+	border: 2px solid #999;
+	padding:20px;
+}
+.teamIntroP p{
+	margin: 0px;
+	font-size: 14px;
+	color: black;
+}
+.teamMemberP{
+	background-color: white;
+	position: absolute;
+	margin-left: 860px;
+   	margin-right: 0px;
+	width: 80px;
+	padding: 20px;
+	border: 2px solid #999;
+}
+.teamMemberP img{
+	width: 80px;
+	height: 80px;
+	margin-bottom: 20px;
+	border: 2px solid #999;
+}

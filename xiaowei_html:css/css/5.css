@@ -1,0 +1,159 @@
+.navigation{
+	width: 100%;
+	height: 30px;
+	clear: both;
+	overflow: hidden;
+	background-color: #333;
+	padding-bottom: 20px;
+	border-bottom: 2px;
+
+}
+.navigation img{
+	width: 123px;
+	height: 40px;
+	margin-left: 2em;
+	margin-bottom: 5px;
+}
+.navigation ul{
+	float: right;
+	list-style: none;
+}
+.navigation ul li{
+	font-size: 14px;
+	float: left;
+	margin-right: 10px;
+}
+.navigation ul li a{
+	text-decoration: none;
+	color: white;
+}
+.outer{
+	background-color:  #d9d9d9;
+	overflow:hidden;
+}
+.container{
+	background-color:  white;
+	margin-left: 2em;
+   	margin-right: 430px;
+   	margin-top: 2em;
+   	margin-bottom: 2em;
+	width: auto;
+	padding: 1.5em 1.5em;
+}
+.container::after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.container h1{
+	font-size: 1.5em;
+	color:black;
+}
+.container h2{
+	font-size: 1em;
+	color:   #595959;
+}
+.container h3{
+	font-size: 0.5em;
+	color:#737373;
+}
+.container p{
+	 text-indent:32px;
+}
+.container ul{
+	list-style: none;
+}
+.container img{
+	width: 400px;
+	height: 300px;
+}
+.container table{
+	border-collapse: collapse;
+	width: 90%;
+	margin: 1em 1.5em;
+	line-height: 30px;
+	border: 1px solid #ccc;
+}
+.container table th{
+	background-color: #333;
+	text-align: left;
+	color: white;
+}
+.container form{
+	text-align: center;
+}
+.imgblock{
+	float:left;
+	width: 140px;
+	height: 140px;
+	padding: 5px 5px 10px;
+	margin: 15px 15px;
+	border: 2px solid #ccc;
+	text-align: center;
+	font-size: 0.5em;
+}
+.imgblock h3{
+	text-align: center;
+	font-size: 0.5em;
+}
+.imgblock img{
+	width: 120px;
+	height: 100px;
+	padding: 0px 10px 10px;
+}
+aside{
+	background-color: #FFFFFF;
+	margin: 2em;
+	padding: 20px;
+	box-shadow: 2px 2px 1px 1px #cccccc;
+	float: right;
+	width: 340px;
+}
+aside h2 {
+	border-left: 6px solid #A9A9A9;
+	padding-left: 10px;
+	margin-bottom: 20px;
+	font-size: 2.5ex;
+}
+form {
+	display: block;
+	font-size: 14px;
+}
+.row{
+	line-height: 100%;
+	padding: 0ex;
+	margin: 0ex;
+}
+.row p {
+	display: inline-block;
+	width: 40%;
+	font-size: 1em;
+	text-align:right;
+	padding-right: 20px;
+}
+.row h3 {
+	display: inline-block;
+	font-size: 1.7ex;
+	margin: 0ex;
+	padding: 0ex;
+	vertical-align: top;
+}
+button {
+	background-color: #3355D0;
+	width: 95%;
+	font-size:20px;
+	color:white;
+	line-height: 200%;
+	border-radius: 10px;
+}
+.footer{
+	width: 100%;
+	height: 30px;
+	clear: both;
+	overflow: hidden;
+	background-color: #333;
+	padding-bottom: 30px;
+	border-bottom: 2px;
+	text-align: center;
+	color:white;
+}

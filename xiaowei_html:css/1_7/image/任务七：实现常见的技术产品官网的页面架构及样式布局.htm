@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)file:///Users/LuXing/Desktop/front-end-practice/1_7/1_7.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		
+		<title>任务七：实现常见的技术产品官网的页面架构及样式布局</title>
+		<link rel="stylesheet" href="./任务七：实现常见的技术产品官网的页面架构及样式布局_files/7.css">
+	</head>
+	<body>
+		<div class="container">
+			<div class="navigation">
+	            <div class="left">	
+	            	<h1><img src="./任务七：实现常见的技术产品官网的页面架构及样式布局_files/logo.jpg"> 新世界</h1>
+	            </div>
+	            <ul>
+		            <li><a href="file:///Users/LuXing/Desktop/front-end-practice/1_7/1_7.html">首页</a></li>
+		            <li><a href="file:///Users/LuXing/Desktop/front-end-practice/1_7/1_7.html">最新活动</a></li>
+		            <li><a href="file:///Users/LuXing/Desktop/front-end-practice/1_7/1_7.html">项目介绍</a></li>
+		            <li><a href="file:///Users/LuXing/Desktop/front-end-practice/1_7/1_7.html">爱心社区</a></li>
+		            <li><a href="file:///Users/LuXing/Desktop/front-end-practice/1_7/1_7.html">关于我们</a></li>
+		            <li style="border-bottom:none;color:#E74F4D;"><img src="./任务七：实现常见的技术产品官网的页面架构及样式布局_files/login.jpg"><a href="file:///Users/LuXing/Desktop/front-end-practice/1_7/1_7.html" style="color:#E74F4D;"> 登录</a>
+		    	</li></ul>
+	        </div>
+	        <div class="block1">
+	        	<img class="bg" src="./任务七：实现常见的技术产品官网的页面架构及样式布局_files/1_bg.png">
+	        	<a href="file:///Users/LuXing/Desktop/front-end-practice/1_7/1_7.html" class="button">开始体验</a>
+	        </div>
+	        <div class="block2">
+	        	<ul>
+	        		<li>
+					<img src="./任务七：实现常见的技术产品官网的页面架构及样式布局_files/list1.jpg">
+					<p style="border:none;">打造全新世界观，让你<br>更爱你的生活</p><p>
+				</p></li>
+				<li>
+					<img src="./任务七：实现常见的技术产品官网的页面架构及样式布局_files/list2.jpg">
+					<p>丰富多彩的公益活动，发挥<br>新世界的主人公意识</p><p>
+				</p></li>
+				<li>
+					<img src="./任务七：实现常见的技术产品官网的页面架构及样式布局_files/list3.jpg">
+					<p>时尚的新理念，超前<br>体验未知的生活</p><p>
+				</p></li>
+				<li>
+					<img src="./任务七：实现常见的技术产品官网的页面架构及样式布局_files/list4.jpg">
+					<p>完善的培养机制，帮助<br>每一步都走的出彩</p><p>
+				</p></li>
+	        </ul></div>
+	        <div class="block3">
+	        	<img src="./任务七：实现常见的技术产品官网的页面架构及样式布局_files/logo2.jpg"> 
+	        	<p>关于新世界，你不知道的还有什么？</p>
+	        </div>
+	        <div class="block4">
+	        	<h1>查找新世界城市活动信息</h1>
+	        	<p>每个城市有不同的活动信息，请自助查询你所有了解的城市</p>
+
+				<form class="select-city" action="file:///Users/LuXing/Desktop/front-end-practice/1_7/1_7.html" method="get">
+						<div class="parent">
+							<label class="select">
+								<input list="countrys" placeholder=" 国家">
+								<datalist id="countrys">
+									<option value="中国">
+									</option><option value="美国">
+									</option><option value="俄罗斯">
+									</option><option value="日本">
+									</option><option value="英国">
+									</option><option value="法国">
+									</option><option value="德国">
+									</option><option value="印度">
+									</option><option value="澳大利亚">
+									</option><option value="加拿大">
+									</option><option value="意大利">
+									</option><option value="韩国">
+								</option></datalist>
+							</label>
+						</div>
+						<div class="parent">
+							<label class="select">
+								<input list="province" placeholder=" 省份">
+								<datalist id="province">
+									<option value="安徽省">
+									</option><option value="北京市">
+									</option><option value="上海市">
+									</option><option value="广东省">
+									</option><option value="江苏省">
+									</option><option value="浙江省">
+									</option><option value="山东省">
+									</option><option value="湖北省">
+									</option><option value="辽宁省">
+									</option><option value="新疆维吾尔族自治区">
+									</option><option value="陕西省">
+									</option><option value="内蒙古自治区">
+								</option></datalist>
+							</label>
+						</div>
+						<div class="parent">
+							<label class="select">
+								<input list="city" placeholder="城市">
+								<datalist id="city">
+									<option value="合肥市">
+									</option><option value="芜湖市">
+									</option><option value="安庆市">
+									</option><option value="阜阳市">
+									</option><option value="蚌埠市">
+									</option><option value="马鞍山市">
+									</option><option value="滁州市">
+								</option></datalist>
+							</label>
+						</div>
+						<div>
+							<label>
+								<button name="search" class="butt" value="search">搜索</button>
+							</label>
+						</div>
+				</form>
+			</div>
+			<div class="block5">
+				<ul>
+	                <li>
+	                    <img src="./任务七：实现常见的技术产品官网的页面架构及样式布局_files/beijing.jpg">
+	                    <h3>北京活动</h3>
+	                    <p>新社区大联盟</p>
+	                </li>
+	                <li>
+	                    <h3 style="font-size:3ex;letter-spacing:3ex;">上海活动</h3>
+	                    <p>夜上海新景观探索</p>
+	                    <img src="./任务七：实现常见的技术产品官网的页面架构及样式布局_files/shanghai.jpg">
+	                </li>
+	                <li>
+	                    <img src="./任务七：实现常见的技术产品官网的页面架构及样式布局_files/shenzhen.jpg">
+	                    <h3>深圳活动</h3>
+	                    <p>全新海岸线观点站</p>
+	                </li>
+	                <li>
+	                    <img src="./任务七：实现常见的技术产品官网的页面架构及样式布局_files/hongkong.jpg">
+	                    <h3>香港活动</h3>
+	                    <p>奢侈消费大派送</p>
+	                </li>
+	            </ul>
+			</div>
+			<div class="block6">
+				<img src="./任务七：实现常见的技术产品官网的页面架构及样式布局_files/time.jpg">
+	            <div class="right">
+                    <h3>新世界/<span>01</span></h3>
+                    <p>新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界</p>
+                    <a href="file:///Users/LuXing/Desktop/front-end-practice/1_7/1_7.html">更多详情</a>
+                    <ul>
+                        <li></li>
+                        <li class="newWorld_mid"></li>
+                        <li></li>
+                    </ul>
+	            </div>
+			</div>
+			<div class="block7">
+			</div>
+			<div class="block8">
+			</div>
+	    </div>
+	
+</body></html>
